@@ -9,6 +9,8 @@
 */
 package springTest.mvc.controller;
 
+import java.util.Properties;
+
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
@@ -21,6 +23,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
+
+import springTest.mvc.utils.PropertiesUtil;
 
 /**
  * ClassName:UserController
@@ -38,6 +42,9 @@ public class UserController {
 	@RequestMapping(value="/{id}",method=RequestMethod.GET)
 	public String getUser(@PathVariable String id){
 		logger.info("do something!");
+		Properties properties = PropertiesUtil.getProperties();
+		logger.info("IP:"+properties.getProperty("mongoDBIP"));
+		logger.info("HOST:"+properties.getProperty("mongoDBPORT"));
 		return id;
 	}
 	
